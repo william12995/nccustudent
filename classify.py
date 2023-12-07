@@ -67,40 +67,40 @@ data_3 = data["type"] == "剩食"
 data_4 = data["type"] == "其他"
 
 
-def cut_content(contents):
-  new_c = []
-  for content in contents:
-    content = content[0:4]+content[18:40]
-    new_c.append(content)
-
-  return pd.DataFrame(new_c)
+def cut_content(c):
+  name = c.str.slice(0, 5)
+  short_m = c.str.slice(18,40)
+  new = name + short_m
+  
+  return name + short_m
 
 def getURL(user_input = ""):
-
+  data2 = data
   if user_input == "1": #問卷
-    c = data[data_1 == True]["貼文內容"]
-    c = cut_content(c)
-    data[data_1 == True]["貼文內容"] = c
-    d = data[data_1 == True]["貼文內容"] + data[data_1 == True]["貼文連結"]
+    c = data2[data_1 == True]["貼文內容"]
+    data2.loc[data_1 == True,"貼文內容"] = cut_content(c)
+    
+    d = data2[data_1 == True]["貼文內容"] + data2[data_1 == True]["貼文連結"]
     return d.head(5)
 
   elif user_input == "2": #遺失物
-    c = data[data_2 == True]["貼文內容"]
-    c = cut_content(c)
-    data[data_2 == True]["貼文內容"] = c
-    d = data[data_2 == True]["貼文內容"] + data[data_2 == True]["貼文連結"]
-    
+    c = data2[data_2 == True]["貼文內容"]
+    data2.loc[data_2 == True,"貼文內容"] = cut_content(c)
+
+    d = data2[data_2 == True]["貼文內容"] + data2[data_2 == True]["貼文連結"]
     return d.head(5)
 
   elif user_input == "3": #剩食
-    c = data[data_3 == True]["貼文內容"]
-    c = cut_content(c)
-    data[data_3 == True]["貼文內容"] = c
-    d = data[data_3 == True]["貼文內容"] + data[data_3 == True]["貼文連結"]
-    
+    c = data2[data_3 == True]["貼文內容"]
+    data2.loc[data_3 == True,"貼文內容"] = cut_content(c)
+
+    d = data2[data_3 == True]["貼文內容"] + data2[data_3 == True]["貼文連結"]
     return d.head(5)
 
   else:
     print("ERROR")
+
+
+
 
 
