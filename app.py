@@ -40,6 +40,7 @@ def handle_message(event):
     
     message = text=event.message.text
     if re.match('告訴我秘密',message):
+        one = getURL("2").to_string()
         buttons_template_message = TemplateSendMessage(
         alt_text='這個看不到',
         template=ButtonsTemplate(
@@ -49,15 +50,15 @@ def handle_message(event):
             actions=[
                 MessageAction(
                     label='選項1',
-                    text= getURL("2").to_string()
+                    text= one
                 ),
                 MessageAction(
                     label='選項2',
-                    text= getURL("2").to_string()
+                    text= one
                 ),
                 MessageAction(
                     label='選項3',
-                    text= getURL("2").to_string()
+                    text= one
                 )
             ]
         )
