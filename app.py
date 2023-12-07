@@ -30,7 +30,7 @@ def callback():
 #     message = text=event.message.text
 #     if re.match('測試',message):
 #         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = getURL("2").to_string()))
-#         print(getURL("2").to_string())
+#         
 #     else:
 #         message = TextSendMessage(text=event.message.text)
 #         line_bot_api.reply_message(event.reply_token, message)
@@ -39,34 +39,36 @@ def callback():
 def handle_message(event):
     
     message = text=event.message.text
-    if re.match('告訴我秘密',message):
-        one = getURL("1").to_string()
-        two = getURL("2").to_string()
-        three = getURL("3").to_string()
-
+    if re.match('哈囉',message):
         buttons_template_message = TemplateSendMessage(
-        alt_text='這個看不到',
+        alt_text='按鈕選單',
         template=ButtonsTemplate(
             thumbnail_image_url='https://i.imgur.com/wpM584d.jpg',
-            title='行銷搬進大程式',
-            text='選單功能－TemplateSendMessage',
+            title='政大交流版',
+            text='選擇貼文類型 :',
             actions=[
                 MessageAction(
-                    label='選項1',
-                    text= one
+                    label='問卷',
+                    text= '問卷'
                 ),
                 MessageAction(
-                    label='選項2',
-                    text= two
+                    label='遺失物',
+                    text= '遺失物'
                 ),
                 MessageAction(
-                    label='選項3',
-                    text= three
+                    label='剩食',
+                    text= '剩食'
                 )
             ]
         )
     )
         line_bot_api.reply_message(event.reply_token, buttons_template_message)
+    elif re.match('問卷',message):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = getURL("1").to_string()))
+    elif re.match('遺失物',message):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = getURL("2").to_string()))
+    elif re.match('剩食',message):
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = getURL("3").to_string()))
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 
