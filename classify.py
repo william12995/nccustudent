@@ -72,19 +72,19 @@ def getURL(user_input = ""):
 
   if user_input == "1": #問卷
 
-    return data[data_1 == True]["貼文連結"].head(10)
+    return data[data_1 == True]["貼文連結"].head(5)
 
   elif user_input == "2": #遺失物
 
-    return data[data_2 == True]["貼文連結"].head(10)
+    return data[data_2 == True]["貼文連結"].head(5)
 
   elif user_input == "3": #剩食
 
-    return data[data_3 == True]["貼文連結"].head(10)
+    return data[data_3 == True]["貼文連結"].head(5)
 
   elif user_input == "4": #其他
 
-    return data[data_4 == True]["貼文連結"].head(10)
+    return data[data_4 == True]["貼文連結"].head(5)
 
   else:
     print("ERROR")
