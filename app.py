@@ -64,7 +64,7 @@ def handle_message(event):
     )
         line_bot_api.reply_message(event.reply_token, buttons_template_message)
     elif re.match('問卷',message):
-        addr = "<a href="https://www.w3schools.com">Visit W3Schools.com!</a>"
+        addr = "<a href="+"https://www.w3schools.com"+">Visit W3Schools.com!</a>"
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = addr))
     elif re.match('遺失物',message):
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = getURL("2").to_string(index=False)))
