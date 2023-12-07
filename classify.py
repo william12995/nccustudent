@@ -91,22 +91,23 @@ for index,i in enumerate(data["貼文連結"]):
 def getURL(user_input = ""):
   data2 = data
   if user_input == "1": #問卷
-    
-    d = data2[data_1 == True]["貼文內容"] + data2[data_1 == True]["貼文連結"]
+    # df["full_name"] = df[["first_name","last_name"]].agg(" ".join, axis=1)
+    d =  data2[data_1 == True]["貼文內容"].astype(str) +" "+ data2[data_1 == True]["貼文連結"] 
     
     return d.head(5)
 
   elif user_input == "2": #遺失物
 
-    d = data2[data_2 == True]["貼文內容"] + data2[data_2 == True]["貼文連結"]
+    d =  data2[data_2 == True]["貼文內容"].astype(str) +" "+ data2[data_2 == True]["貼文連結"] 
     return d.head(5)
 
   elif user_input == "3": #剩食
 
-    d = data2[data_3 == True]["貼文內容"] + data2[data_3 == True]["貼文連結"]
+    d =  data2[data_3 == True]["貼文內容"].astype(str) +" "+ data2[data_3 == True]["貼文連結"] 
     return d.head(5)
 
   else:
     print("ERROR")
+
 
 
