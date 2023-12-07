@@ -4,6 +4,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 import os
 import re
+from classify import getURL
 
 app = Flask(__name__)
 
@@ -22,6 +23,8 @@ def callback():
         abort(400)
     return 'OK'
 
+    
+
 # @handler.add(MessageEvent, message=TextMessage)
 # def handle_message(event):
 #     message = TextSendMessage(text=event.message.text)
@@ -29,6 +32,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    
     message = text=event.message.text
     if re.match('告訴我秘密',message):
         buttons_template_message = TemplateSendMessage(
@@ -45,7 +49,7 @@ def handle_message(event):
                 ),
                 MessageAction(
                     label='光明正大傳資料',
-                    text='我就是資料'
+                    text= getURL(2)
                 ),
                 URIAction(
                     label='行銷搬進大程式',
