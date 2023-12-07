@@ -29,8 +29,8 @@ def callback():
 def handle_message(event):
     message = text=event.message.text
     if re.match('測試',message):
-        line_bot_api.reply_message(event.reply_token, getURL("2"))
-        print(getURL("2"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = getURL("2").to_string()))
+        print(getURL("2").to_string())
     else:
         message = TextSendMessage(text=event.message.text)
         line_bot_api.reply_message(event.reply_token, message)
