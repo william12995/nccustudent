@@ -49,7 +49,7 @@ def handle_message(event):
             actions=[
                 MessageAction(
                     label='選項1',
-                    text= getURL("1").to_string()
+                    text= getURL("2").to_string()
                 ),
                 MessageAction(
                     label='選項2',
@@ -57,7 +57,7 @@ def handle_message(event):
                 ),
                 MessageAction(
                     label='選項3',
-                    text= getURL("3").to_string()
+                    text= getURL("2").to_string()
                 )
             ]
         )
