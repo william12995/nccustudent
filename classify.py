@@ -3,6 +3,7 @@
 # 複製檔案路徑
 import pandas as pd
 data = pd.read_csv("./output (1).csv", encoding = "UTF-8")
+import pyshorteners
 
 type_mapping = {
     "填表單": "問卷",
@@ -68,39 +69,44 @@ data_4 = data["type"] == "其他"
 
 
 def cut_content(c):
-  name = c.str.slice(0, 5)
-  short_m = c.str.slice(18,40)
-  new = name + short_m
   
+  name = c.str.slice(0, 5)
+  short_m = c.str.slice(18,30)
+  new = name + short_m
+
   return name + short_m
+
+c = (data["貼文內容"])
+data["貼文內容"] = cut_content(c)
+
+s = pyshorteners.Shortener()
+
+for index,i in enumerate(data["貼文連結"]):
+  
+  if pd.isna(i):
+    continue
+  response = s.tinyurl.short(i)
+  data["貼文連結"][index] = response
 
 def getURL(user_input = ""):
   data2 = data
   if user_input == "1": #問卷
-    c = data2[data_1 == True]["貼文內容"]
-    data2.loc[data_1 == True,"貼文內容"] = cut_content(c)
     
     d = data2[data_1 == True]["貼文內容"] + data2[data_1 == True]["貼文連結"]
+    
     return d.head(5)
 
   elif user_input == "2": #遺失物
-    c = data2[data_2 == True]["貼文內容"]
-    data2.loc[data_2 == True,"貼文內容"] = cut_content(c)
 
     d = data2[data_2 == True]["貼文內容"] + data2[data_2 == True]["貼文連結"]
     return d.head(5)
 
   elif user_input == "3": #剩食
-    c = data2[data_3 == True]["貼文內容"]
-    data2.loc[data_3 == True,"貼文內容"] = cut_content(c)
 
     d = data2[data_3 == True]["貼文內容"] + data2[data_3 == True]["貼文連結"]
     return d.head(5)
 
   else:
     print("ERROR")
-
-
-
 
 
