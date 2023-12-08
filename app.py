@@ -39,7 +39,7 @@ def callback():
 def handle_message(event):
     
     message = text=event.message.text
-    if re.match('哈囉',message):
+    if re.match('哈囉'|"告訴我秘密",message):
         buttons_template_message = TemplateSendMessage(
         alt_text='按鈕選單',
         template=ButtonsTemplate(
