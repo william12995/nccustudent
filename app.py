@@ -43,7 +43,7 @@ def handle_message(event):
         buttons_template_message = TemplateSendMessage(
         alt_text='按鈕選單',
         template=ButtonsTemplate(
-            thumbnail_image_url='https://i.imgur.com/wpM584d.jpg',
+            thumbnail_image_url='https://imgur.com/a/X4AWylx',
             title='政大交流版',
             text='選擇貼文類型 :',
             actions=[
